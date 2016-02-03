@@ -3,11 +3,17 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
+	//Basic attributes for the characters that can be edited in unity editor.
 	public float movementSpeed;
+	public float maxMovementSpeed;
 	public float jumpHeight;
+	public float doubleJumpHeight;
+
+	//Variables for the character jumping
 	bool grounded;
 	bool hasJumped;
 	bool doubleJump;
+	bool doubleJumped;
 
 
 	// Use this for initialization
@@ -15,7 +21,7 @@ public class PlayerMovement : MonoBehaviour {
 	{
 		grounded = false;
 		hasJumped = false;
-		doubleJump = false;
+		doubleJump = true;
 	}
 	
 	// Update is called once per frame
@@ -24,29 +30,81 @@ public class PlayerMovement : MonoBehaviour {
 
 		if (Input.GetKey(KeyCode.LeftArrow))
 		{
-			transform.position += Vector3.left * movementSpeed * Time.deltaTime;
+			rigidbody2D.AddForce(transform.right * -movementSpeed);
 		}
 
 		if (Input.GetKey(KeyCode.RightArrow))
 		{
-			transform.position += Vector3.right * movementSpeed * Time.deltaTime;
+			rigidbody2D.AddForce(transform.right * movementSpeed);
 		}
 
 		if(!grounded && rigidbody2D.velocity.y == 0) 
 		{
 			grounded = true;
+			doubleJump = true;
 		}
 		
-		if (Input.GetKey(KeyCode.UpArrow) && (grounded || doubleJump)) 
+		if (Input.GetKeyDown(KeyCode.UpArrow))
 		{
-			if (doubleJump = false)
-				doubleJump = true;
-			else
+
+			if (grounded)
+				hasJumped = true;
+			else if (doubleJump)
+			{
+				doubleJumped = true;
 				doubleJump = false;
-			print (doubleJump);
-			
-			hasJumped = true;
+			}
+
 		}
+
+		float speedDifference = 0;
+
+
+
+
+
+
+
+
+
+
+
+//		if (rigidbody2D.velocity.x > maxMovementSpeed && rigidbody2D.velocity.x > 0)
+//		{
+//			speedDifference = rigidbody2D.velocity.x - 5;
+//			rigidbody2D.AddForce(transform.right * -speedDifference);
+//			print("speed difference: " + speedDifference);
+//		}
+//
+//		if (rigidbody2D.velocity.x < maxMovementSpeed && rigidbody2D.velocity.x < 0)
+//		{
+//			speedDifference = rigidbody2D.velocity.x + 5;
+//			rigidbody2D.AddForce(transform.right * speedDifference);
+//		}
+//
+
+
+
+
+
+//		if (rigidbody2D.velocity.x > maxMovementSpeed)
+//			rigidbody2D.velocity = rigidbody2D.velocity.normalized * maxMovementSpeed;
+//
+//		if (rigidbody2D.velocity.x < -maxMovementSpeed)
+//			rigidbody2D.velocity = rigidbody2D.velocity.normalized * maxMovementSpeed;
+//
+
+
+
+
+
+
+
+//		print ("Speed: " + rigidbody2D.velocity.x);
+
+
+
+
 
 
 	}
@@ -59,7 +117,41 @@ public class PlayerMovement : MonoBehaviour {
 			grounded = false;
 			hasJumped = false;
 		}
-		
+
+		if(doubleJumped)
+		{
+			rigidbody2D.AddForce(transform.up*doubleJumpHeight);
+			grounded = false;
+			doubleJumped = false;
+		}
+
+//		rigidbody2D.velocity = Vector3.ClampMagnitude (rigidbody2D.velocity, maxMovementSpeed);
+//
+
+
+
+
+
+
+
+
+
+
+//		float x =  Mathf.Clamp(rigidbody2D.velocity.x, 0, maxMovementSpeed);
+//		rigidbody2D.velocity = new Vector2(x, 0f);
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 	
 }
