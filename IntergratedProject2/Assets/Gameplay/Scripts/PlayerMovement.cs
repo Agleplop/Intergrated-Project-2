@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
 	//Basic attributes for the characters that can be edited in unity editor.
-	public float movementSpeed;
+	public float acceleration;
 	public float maxMovementSpeed;
 	public float jumpHeight;
 	public float doubleJumpHeight;
@@ -15,6 +15,8 @@ public class PlayerMovement : MonoBehaviour {
 	bool doubleJump;
 	bool doubleJumped;
 
+	//Varaibles for charactermovement
+	float inputValueX = 0;
 
 	// Use this for initialization
 	void Start () 
@@ -28,23 +30,13 @@ public class PlayerMovement : MonoBehaviour {
 	void Update () 
 	{
 
-		if (Input.GetKey(KeyCode.LeftArrow))
-		{
-			rigidbody2D.AddForce(transform.right * -movementSpeed);
-		}
-
-		if (Input.GetKey(KeyCode.RightArrow))
-		{
-			rigidbody2D.AddForce(transform.right * movementSpeed);
-		}
-
 		if(!grounded && rigidbody2D.velocity.y == 0) 
 		{
 			grounded = true;
 			doubleJump = true;
 		}
 		
-		if (Input.GetKeyDown(KeyCode.UpArrow))
+		if (Input.GetAxis ("VerticalPlayer") > 0)
 		{
 
 			if (grounded)
@@ -57,54 +49,7 @@ public class PlayerMovement : MonoBehaviour {
 
 		}
 
-		float speedDifference = 0;
-
-
-
-
-
-
-
-
-
-
-
-//		if (rigidbody2D.velocity.x > maxMovementSpeed && rigidbody2D.velocity.x > 0)
-//		{
-//			speedDifference = rigidbody2D.velocity.x - 5;
-//			rigidbody2D.AddForce(transform.right * -speedDifference);
-//			print("speed difference: " + speedDifference);
-//		}
-//
-//		if (rigidbody2D.velocity.x < maxMovementSpeed && rigidbody2D.velocity.x < 0)
-//		{
-//			speedDifference = rigidbody2D.velocity.x + 5;
-//			rigidbody2D.AddForce(transform.right * speedDifference);
-//		}
-//
-
-
-
-
-
-//		if (rigidbody2D.velocity.x > maxMovementSpeed)
-//			rigidbody2D.velocity = rigidbody2D.velocity.normalized * maxMovementSpeed;
-//
-//		if (rigidbody2D.velocity.x < -maxMovementSpeed)
-//			rigidbody2D.velocity = rigidbody2D.velocity.normalized * maxMovementSpeed;
-//
-
-
-
-
-
-
-
-//		print ("Speed: " + rigidbody2D.velocity.x);
-
-
-
-
+		inputValueX = Input.GetAxis ("HorizontalPlayer");
 
 
 	}
@@ -125,31 +70,13 @@ public class PlayerMovement : MonoBehaviour {
 			doubleJumped = false;
 		}
 
-//		rigidbody2D.velocity = Vector3.ClampMagnitude (rigidbody2D.velocity, maxMovementSpeed);
-//
-
-
-
-
-
-
-
-
-
-
-//		float x =  Mathf.Clamp(rigidbody2D.velocity.x, 0, maxMovementSpeed);
-//		rigidbody2D.velocity = new Vector2(x, 0f);
-
-
-
-
-
-
-
-
-
-
-
+		if (inputValueX > 0)
+			if (rigidbody2D.velocity.x < maxMovementSpeed)
+				rigidbody2D.AddForce(transform.right * acceleration);
+		
+		if (inputValueX < 0)
+			if (rigidbody2D.velocity.x > -maxMovementSpeed)
+					rigidbody2D.AddForce(transform.right * -acceleration);
 
 
 	}
