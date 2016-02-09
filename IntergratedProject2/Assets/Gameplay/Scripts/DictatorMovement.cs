@@ -26,7 +26,7 @@ public class DictatorMovement : MonoBehaviour {
 
 
 
-		if (Input.GetAxis("HorizontalDictator") == 0 && Input.GetAxis("VerticalDictator") == 0 && rigidbody2D.drag < 10)
+		if (Input.GetAxis("HorizontalDictator") == 0 && Input.GetAxis("VerticalDictator") == 0 && rigidbody2D.drag < 20)
 			rigidbody2D.drag++;
 		else
 			rigidbody2D.drag = 0;

@@ -21,5 +21,8 @@ public class DragonScript : MonoBehaviour {
 	void Update () 
 	{
 		transform.position = Vector3.MoveTowards (transform.position, target, speed * Time.deltaTime);
+
+		if (transform.position.x == -15)
+			Destroy (this.gameObject);
 	}
 }
