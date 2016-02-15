@@ -6,6 +6,7 @@ public class EvilBall : MonoBehaviour {
 	int random;
 	Vector3 target = new Vector3(0, 0, 0);
 	public float moveSpeed;
+	public GameObject particle;
 
 	// Use this for initialization
 	void Start () 
@@ -39,7 +40,13 @@ public class EvilBall : MonoBehaviour {
 		transform.position = Vector3.MoveTowards (transform.position, target, moveSpeed * Time.deltaTime);
 
 		if (transform.position == target)
+		{
+			for (int i = 0; i < Random.Range(50, 75); i++)
+			{
+				Instantiate (particle, transform.position, Quaternion.identity);
+			}
 			Destroy(this.gameObject);
+		}
 	}
 
 	public void GetTarget(Vector3 t)
