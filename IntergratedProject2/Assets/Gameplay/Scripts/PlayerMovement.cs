@@ -15,8 +15,13 @@ public class PlayerMovement : MonoBehaviour {
 	bool doubleJump;
 	bool doubleJumped;
 
-	//Varaibles for charactermovement
+	//Variables for charactermovement
 	float inputValueX = 0;
+
+
+	//Variables
+	string direction = "Right;
+	bool walking = false;
 
 	// Use this for initialization
 	void Start () 
@@ -36,7 +41,7 @@ public class PlayerMovement : MonoBehaviour {
 			doubleJump = true;
 		}
 		
-		if (Input.GetAxis ("VerticalPlayer") > 0)
+		if (Input.GetButtonDown ("JumpPlayer1"))
 		{
 
 			if (grounded)
@@ -49,7 +54,18 @@ public class PlayerMovement : MonoBehaviour {
 
 		}
 
-		inputValueX = Input.GetAxis ("HorizontalPlayer");
+		inputValueX = Input.GetAxis ("HorizontalPlayer1");
+
+		if (inputValueX > 0)
+		{
+			direction = "Right";
+		}
+		else if (inputValueX < 0)
+		{
+			direction = "False";
+		}
+		else
+
 
 
 	}

@@ -1,9 +1,11 @@
 fileFormatVersion: 2
-guid: a6fd4982dafdfb3408879bf04e92c651
+guid: c91192e9d2977fe4dac3784e44123659
 TextureImporter:
   fileIDToRecycleName:
-    21300000: RedWizardAttack_0
-    21300002: RedWizardAttack_1
+    21300000: RedWizard_Idle
+    21300002: RedWizard_Walk
+    21300004: RedWizard_Attack0
+    21300006: RedWizard_Attack1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -45,20 +47,40 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: RedWizardAttack_0
+    - name: RedWizard_Idle
       rect:
         serializedVersion: 2
-        x: 1
-        y: 3
-        width: 159
+        x: 0
+        y: 210
+        width: 147
+        height: 169
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RedWizard_Walk
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 209
+        width: 143
+        height: 181
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: RedWizard_Attack0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2
+        width: 145
         height: 166
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: RedWizardAttack_1
+    - name: RedWizard_Attack1
       rect:
         serializedVersion: 2
-        x: 171
+        x: 181
         y: 3
         width: 159
         height: 166
