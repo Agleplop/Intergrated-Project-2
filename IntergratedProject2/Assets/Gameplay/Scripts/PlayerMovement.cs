@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
 	//Variables
-	string direction = "Right;
+	string direction = "Right";
 	bool walking = false;
 
 	// Use this for initialization
@@ -56,15 +56,18 @@ public class PlayerMovement : MonoBehaviour {
 
 		inputValueX = Input.GetAxis ("HorizontalPlayer1");
 
-		if (inputValueX > 0)
+		if (inputValueX > 0) 
 		{
 			direction = "Right";
-		}
-		else if (inputValueX < 0)
+		} 
+		else if (inputValueX < 0) 
 		{
 			direction = "False";
+		} 
+		else 
+		{
+
 		}
-		else
 
 
 
